@@ -1,0 +1,10 @@
+Just find out the solution.
+It it not documented, but you add one line in /etc/glusterfs/glusterd.vol :
+option rpc-auth-allow-insecure on
+
+Then:
+gluster volume set <volname> server.allow-insecure on
+
+Then stop volume and start volume back
+
+NFS Error: https://access.redhat.com/solutions/3258
