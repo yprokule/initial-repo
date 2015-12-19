@@ -1,0 +1,26 @@
+#
+# Original: https://gist.github.com/sibiaoluo/9523b3857a2553a4f84a
+#
+
+When libvirt network fails to start with error message:
+    error: Failed to start network default
+    error: Unable to create bridge virbr0: File exists
+
+Do:
+# ifconfig virbr0 down
+# virsh net-start default
+error: Failed to start network default
+error: Unable to create bridge virbr0: File exists
+
+# ifconfig virbr0 up
+# virsh net-start default
+error: Failed to start network default
+error: internal error: Network is already in use by interface virbr0
+
+# ifconfig virbr0 down
+# brctl delbr virbr0
+# virsh net-autostart default
+# Just if the net is not autostarted and U want this
+Network default marked as autostarted
+# virsh net-start default
+Network default started
